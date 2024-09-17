@@ -22,7 +22,7 @@ export class CalculatorService {
     }
     // =
     if ( value === '=' ) {
-      console.log('Calculando resultado');
+      this.calculateResult();
       return;
     }
     // Limpiar resultado
@@ -46,6 +46,7 @@ export class CalculatorService {
     }
     // Aplicar operadores
     if ( operators.includes(value) ) {
+      this.calculateResult();
       this.lastOperator.set(value);
       this.subResultText.set( this.resultText() );
       this.resultText.set('0');
@@ -97,7 +98,33 @@ export class CalculatorService {
       return;
     }
 
+  }
 
+
+  public calculateResult() {
+
+    const number1 = parseFloat( this.subResultText() );
+    const number2 = parseFloat( this.resultText() );
+
+    let result = 0;
+
+    switch( this.lastOperator() ) {
+      case '+':
+        result = number1 + number2;
+        break;
+      case '-':
+        result = number1 - number2;
+        break;
+      case '*':
+        result = number1 * number2;
+        break;
+      case '/':
+        result = number1 / number2;
+        break;
+    }
+
+    this.resultText.set( result.toString() );
+    this.subResultText.set('0');
   }
 
 }
