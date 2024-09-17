@@ -6,8 +6,12 @@ import { CalculatorButtonComponent } from "../calculator-button/calculator-butto
   standalone: true,
   imports: [CalculatorButtonComponent],
   templateUrl: './calculator.component.html',
-  styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  // styles: `
+  //   .iscommand {
+  //     @apply bg-indigo-700 bg-opacity-20;
+  //   }
+  // `,
 })
 export class CalculatorComponent {
 
