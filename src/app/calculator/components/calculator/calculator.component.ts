@@ -7,6 +7,9 @@ import { CalculatorButtonComponent } from "../calculator-button/calculator-butto
   imports: [CalculatorButtonComponent],
   templateUrl: './calculator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(document:keyup)': 'handleKeyboardEvent($event)'
+  }
   // styles: `
   //   .iscommand {
   //     @apply bg-indigo-700 bg-opacity-20;
@@ -19,4 +22,13 @@ export class CalculatorComponent {
     console.log({ key });
   }
 
+
+  // @HostListener('document:keyup', ['$event'])
+  handleKeyboardEvent( event: KeyboardEvent ) {
+    // console.log(event, event.key);
+    this.handleClick(event.key);
+  }
+
 }
+
+
