@@ -15,16 +15,19 @@ export class CalculatorService {
   public lastOperator = signal('+');
 
   public constructNumber( value: string ): void {
+
     // Valid input
     if ( ![...numbers, ...operators, ...specialOperators].includes(value) ) {
       console.log('Invalid input', value);
       return;
     }
+
     // =
     if ( value === '=' ) {
       this.calculateResult();
       return;
     }
+
     // Limpiar resultado
     if ( value === 'C' ) {
       this.resultText.set('0');
@@ -32,6 +35,7 @@ export class CalculatorService {
       this.lastOperator.set('+');
       return;
     }
+
     // Backspace
     if ( value === 'Backspace' ) {
       if ( this.resultText() === '0' ) return;
@@ -44,6 +48,7 @@ export class CalculatorService {
 
       return;
     }
+
     // Aplicar operadores
     if ( operators.includes(value) ) {
       this.calculateResult();
@@ -52,11 +57,13 @@ export class CalculatorService {
       this.resultText.set('0');
       return;
     }
+
     // Limitar número de caracteres
     if ( this.resultText().length >= 10 ) {
       console.log('Max length reached');
       return;
     }
+
     // Validar punto decimal
     if ( value === '.' && !this.resultText().includes('.') ) {
       if ( this.resultText() === '0' || this.resultText() === '' ) {
@@ -68,10 +75,12 @@ export class CalculatorService {
       this.resultText.update( text => text + '.' );
       return;
     }
+
     // Manejo de 0 inicial
     if ( value === '0' && (this.resultText() === '0' || this.resultText() !== '-0' ) ) {
       return;
     }
+
     // Cambiar signo
     if ( value === '+/-' ) {
       if ( this.resultText().includes('-') ) {
