@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CalculatorComponent } from './calculator.component';
 import { CalculatorService } from '../../services/calculator.service';
+import { By } from '@angular/platform-browser';
+import { CalculatorButtonComponent } from '../calculator-button/calculator-button.component';
 
 class MockCalculatorService {
   public resultText = jasmine.createSpy('resultText').and.returnValue('100.00');
@@ -60,6 +62,28 @@ describe('CalculatorComponent', () => {
     expect(component.resultText()).toBe('123');
     expect(component.subResultText()).toBe('456');
     expect(component.lastOperator()).toBe('*');
+  });
+
+  it('should have 19 calculator-button components', () => {
+    expect(component.calculatorButtons()).toBeTruthy();
+    expect(component.calculatorButtons().length).toBe(19);
+  });
+
+  it('should have 19 calculator-button with content projection', () => {
+    // const buttonsByDirective = fixture.debugElement.queryAll(
+    //   By.directive(CalculatorButtonComponent)
+    // );
+    const buttons = compiled.querySelectorAll('calculator-button');
+    expect(buttons.length).toBe(19);
+  });
+
+  it('should display the correct content of the button', () => {
+    const buttons = compiled.querySelectorAll('calculator-button');
+
+    expect(buttons[0].textContent?.trim()).toBe('C');
+    expect(buttons[1].textContent?.trim()).toBe('+/-');
+    expect(buttons[2].textContent?.trim()).toBe('%');
+    expect(buttons[3].textContent?.trim()).toBe('÷');
   });
 
 });
