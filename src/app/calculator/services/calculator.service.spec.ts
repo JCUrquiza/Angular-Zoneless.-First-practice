@@ -134,5 +134,25 @@ describe(`CalculatorService`, () => {
     expect(service.resultText().length).toBe(10);
   });
 
+  it('should return if press diferent key about numbers, operators or special operators', () => {
+    const result = service.constructNumber('a');
+
+    expect(result).toBeUndefined();
+  });
+
+  it('should return if press "Backspace" and resultText is "0"', () => {
+    service.resultText.set('0');
+    const result = service.constructNumber('Backspace');
+
+    expect(result).toBeUndefined();
+  });
+
+  it('should resultText value "-" plus value and return if resultText is "-0" previously', () => {
+    service.resultText.set('-0');
+    service.constructNumber('1');
+
+    expect(service.resultText()).toBe('-1');
+  });
+
 });
 

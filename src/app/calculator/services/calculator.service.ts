@@ -18,7 +18,6 @@ export class CalculatorService {
 
     // Valid input
     if ( ![...numbers, ...operators, ...specialOperators].includes(value) ) {
-      console.log('Invalid input', value);
       return;
     }
 
