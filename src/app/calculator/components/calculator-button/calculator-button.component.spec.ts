@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CalculatorButtonComponent } from './calculator-button.component';
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -88,6 +88,24 @@ describe('CalculatorButtonComponent', () => {
 
     expect(projectedContent).not.toBeNull();
     expect(projectedContent?.classList.contains('underline')).toBeTrue();
+  });
+
+  it('should return if contentValue doesnt have native element in handleClick method', () => {
+
+    spyOn(component, 'contentValue').and.returnValue(null as unknown as ElementRef);
+
+    const result = component.handleClick();
+
+    expect(result).toBeUndefined();
+  });
+
+  it('should return if content value is false in keyboardPressedStyle', () => {
+
+    spyOn(component, 'contentValue').and.returnValue(null as unknown as ElementRef);
+
+    const result = component.keyboardPressedStyle('1');
+
+    expect(result).toBeUndefined();
   });
 
 });
