@@ -6,7 +6,6 @@ import { CalculatorComponent } from "../../components/calculator/calculator.comp
   standalone: true,
   imports: [CalculatorComponent],
   templateUrl: './calculator-view.component.html',
-  styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class CalculatorViewComponent {

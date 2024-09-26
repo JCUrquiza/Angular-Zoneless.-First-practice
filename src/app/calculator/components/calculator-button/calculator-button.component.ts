@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, input, output, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, input, output, signal, viewChild } from '@angular/core';
 
 @Component({
   selector: 'calculator-button',
@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, input, out
   imports: [],
   templateUrl: './calculator-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: './calculator-button.component.css',
+  styleUrl: './calculator-button.component.css',
   host: {
     class: 'w-1/4 border-r border-b border-indigo-400',
     '[class.w-2/4]': 'isDoubleSize()',
